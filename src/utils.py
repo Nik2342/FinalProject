@@ -2,7 +2,6 @@ import datetime
 import json
 import logging
 
-
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
@@ -28,7 +27,7 @@ def welcome_message() -> str:
     return welcome_message_str
 
 
-def filter_list_by_data(list_dict, start_date=None, end_date=None):
+def filter_list_by_data(list_dict: list, start_date=None, end_date=None) -> list:
     """Функия фильтрации списка словарей в определенном диапазоне времени"""
     logger.info("Проверка:Задана ли начальная дата пользователем")
     if start_date is None:
@@ -143,7 +142,7 @@ def top_five_transactions(list_dict: list) -> list:
     return result
 
 
-def load_data(path):
+def load_data(path) -> list:
     """Функция получения данных с json-файла"""
     logger.info("Получение данных с json-файла")
     with open(path, "r") as file:

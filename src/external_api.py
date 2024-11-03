@@ -15,9 +15,8 @@ file_formatter = logging.Formatter("%(asctime)s %(levelname)s : %(message)s")
 console_handler.setFormatter(file_formatter)
 
 
-
 def get_currency_rate(currency_code):
-    """Функция для получение валюты"""
+    """Функция для получения валюты"""
     logger.info("Получение курса валюты")
     url = "https://www.cbr-xml-daily.ru//daily_json.js"
     response = requests.get(url)

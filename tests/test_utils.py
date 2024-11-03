@@ -1,13 +1,7 @@
-from unittest.mock import patch, mock_open
+from unittest.mock import mock_open, patch
 
-from src.utils import (
-    filter_list_by_data,
-    get_card_num,
-    total_expenses,
-    cashback_calculation,
-    concat_card_data,
-    top_five_transactions, welcome_message, load_data,
-)
+from src.utils import (cashback_calculation, concat_card_data, filter_list_by_data, get_card_num, load_data,
+                       top_five_transactions, total_expenses)
 
 data = [
     {
@@ -80,7 +74,7 @@ def test_only_end():
     assert len(result) == 0
 
 
-### Тесты get_card_num
+# Тесты get_card_num
 def test_get_card_num_nw():
     result = get_card_num(data)
     assert result == ["4556"]
@@ -91,7 +85,7 @@ def test_get_card_num_empty_list():
     assert result == []
 
 
-### Тесты total_expenses
+# Тесты total_expenses
 def test_total_expenses_nw():
     result = total_expenses(data, list_cards)
     assert result == {"4556": 3660.7}
@@ -102,7 +96,7 @@ def test_total_expenses_empty_list():
     assert result == {}
 
 
-### Тесты cashback_calculation
+# Тесты cashback_calculation
 def test_cashback_calculation():
     result = cashback_calculation(data, list_cards)
     assert result == {"4556": 36.0}
@@ -113,7 +107,7 @@ def test_cashback_calculation_empty():
     assert result == {}
 
 
-### Тесты concat_card_data
+# Тесты concat_card_data
 def test_concat_card_data():
     expenses = {"4556": 3660.7}
     cashback = {"4556": 36.0}
@@ -128,7 +122,7 @@ def test_concat_card_data_empty():
     assert result == []
 
 
-### Тесты top_five_transactions
+# Тесты top_five_transactions
 
 
 def test_top_five_transactions():
@@ -139,17 +133,16 @@ def test_top_five_transactions():
         {"amount": -837.9, "category": "Ж/д билеты", "date": "07.12.2021", "description": "РЖД"},
     ]
 
+
 def test_top_five_transactions_empty():
     result = top_five_transactions([])
     assert result == []
 
 
-### Тесты load
+# Тесты load
 @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
 def test_load_data(mock_file):
     expected_data = {"key": "value"}
     result = load_data("path.json")
     assert result == expected_data
     mock_file.assert_called_once_with("path.json", "r")
-
-
