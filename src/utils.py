@@ -142,8 +142,9 @@ def top_five_transactions(list_dict: list) -> list:
     return result
 
 
-def load_data(path) -> list:
+def load_data() -> list:
     """Функция получения данных с json-файла"""
+    path = "user_settings.json"
     logger.info("Получение данных с json-файла")
     with open(path, "r") as file:
         data = json.load(file)

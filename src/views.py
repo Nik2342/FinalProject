@@ -15,7 +15,6 @@ file_formatter = logging.Formatter("%(asctime)s %(levelname)s : %(message)s")
 console_handler.setFormatter(file_formatter)
 
 path_to_xlsx = "../data/operations.xlsx"
-path_to_user_settings = "../user_settings.json"
 
 
 def main_page(user_data: str):
@@ -51,7 +50,7 @@ def main_page(user_data: str):
 
     # Получение курса валют
     current_currency = []
-    user_settings = load_data(path_to_user_settings)
+    user_settings = load_data()
     for el in user_settings["user_currencies"]:
         current_currency.append(get_currency_rate(el))
 
